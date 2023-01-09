@@ -1,0 +1,15 @@
+body {
+    background-color: darkcyan;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .sin-btn {
+    display: flex;
+    justify-content: end;
+    margin-top: 50%;
+  }
+  
+  .sin-btn:hover {
+  }
+  
