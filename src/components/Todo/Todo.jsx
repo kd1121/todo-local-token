@@ -6,6 +6,7 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 // import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 // import SignOutButton from "./components/SignOut/SignOutButton";
 import SignOutButton from "../SignOut/SignOutButton";
+import LoadingSpinnerTwo from "../LoadingSpinner/LoadingSpinnerTwo"
 
 // import uuid from "uuid";
 // import { v4 as uuidv4 } from "uuid";
@@ -22,7 +23,7 @@ function Todo() {
 
   const navigate = useNavigate();
 
-  const apiEndPoint = "https://63ad0cd534c46cd7ae8f44d5.mockapi.io/todo/";
+  const apiEndPoint = "https://63ad0ea934c46cd7ae8f6df2.mockapi.io/todo/";
   // https://63ad0ea934c46cd7ae8f6df2.mockapi.io
 
   const key = window.localStorage.getItem("key");
@@ -235,7 +236,7 @@ function Todo() {
             className="rmv-all"
             onClick={() => {
               if (isLoading) {
-                return <LoadingSpinner />;
+                return <LoadingSpinnerTwo />;
               } else {
                 deleteAllTodos();
               }
