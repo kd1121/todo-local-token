@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 // import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 // import SignOutButton from "./components/SignOut/SignOutButton";
-import SignOutButton from "../SignOut/SignOutButton";
+// import SignOutButton from "../SignOut/SignOutButton";
 import LoadingSpinnerTwo from "../LoadingSpinner/LoadingSpinnerTwo"
 
 // import uuid from "uuid";
@@ -80,22 +80,35 @@ function Todo() {
 
   //remove All
 
-  const deleteAllTodos = async () => {
+  const deleteAllTodos = () => {
     setIsLoading(true);
-    // Call the delete API for each todo
-    await Promise.all(
-      todos.map(async (todo) => {
-        await axios.delete(`${apiEndPoint}${todo.id}`);
-      })
-    );
-    // Clear the todos state
-    setTodos([]);
-    setIsLoading(false);
+    setTimeout(async () => {
+      const rmd = todos.map((t) => t.id);
+      for (let i in rmd) {
+        await deleteTodo(rmd[i]);
+      }
+      window.localStorage.removeItem("key");
+      navigate("/")
+      setIsLoading(false);
+    }, 2000);
   };
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  // const deleteAllTodos = async () => {
+  //   setIsLoading(true);
+  //   // Call the delete API for each todo
+  //   await Promise.all(
+  //     todos.map(async (todo) => {
+  //       await axios.delete(`${apiEndPoint}${todo.id}`);
+  //     })
+  //   );
+  //   // Clear the todos state
+  //   setTodos([]);
+  //   setIsLoading(false);
+  // };
+
+  // if (isLoading) {
+  //   return <LoadingSpinner />;
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -242,17 +255,13 @@ function Todo() {
               }
             }}
           >
-            Remove All
+            Delete All & Sign Out
           </button>
           {/* <div>
             <button className="sout-btn" type="submit" onClick={signOut()}>
               Sign Out
             </button>
           </div> */}
-
-          <div className="sout-btn">
-            <SignOutButton />
-          </div>
         </div>
       </header>
     </div>
